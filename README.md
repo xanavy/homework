@@ -15,4 +15,4 @@
 - Почніть відстежувати нові файли, якщо додали їх: `git add .`.
 - Створіть коміт: `git commit -a -m"homework"`
 - Відправте коміт до GitHub: `git push --set-upstream origin homework`
-- Зробіть пул-реквест відчинивши у браузері https://github.com/prjctr-html-css/[[username]]-home-work-1/pull/new/homework
+- Зробіть пул-реквест відчинивши у браузері https://github.com/prjctr-html-css/xanavy-home-work-1/pull/new/homework
