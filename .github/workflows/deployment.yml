@@ -1,0 +1,43 @@
+name: Check
+
+on:
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions: write-all
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  html_validator:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Checks HTML5
+      uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+      with:
+        root: ./
+        css: true
+        format: json
+    - run: ls
+    - name: Test report uploaded
+      uses: dorny/test-reporter@v1
+      if: failure()
+      with:
+        name: HTML Validator
+        path: log.log
+        reporter: flutter-json
+    - name: Test report uploaded2
+      uses: dorny/test-reporter@v1
+      with:
+        name: HTML Validator
+        path: log.log
+        reporter: mocha-json
+    - uses: actions/upload-artifact@v3
+      with:
+        name: validator
+        path: log.log
+        if-no-files-found: ignore
